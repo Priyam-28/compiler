@@ -1,0 +1,2 @@
+/usr/bin/ar qc libpPIMBackend.a CMakeFiles/pPIMBackend.dir/pPIMBackend.cpp.o CMakeFiles/pPIMBackend.dir/pPIMMemoryMap.cpp.o
+/usr/bin/ranlib libpPIMBackend.a

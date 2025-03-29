@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+a772f5aed8ce10eb4c9540833d8d5dfa test/CMakeFiles/matrix_multiply_bc
+e642c7eb9bacd4f9cd472d09a8386c6a test/matrix_multiply.bc

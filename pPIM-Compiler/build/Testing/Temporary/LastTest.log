@@ -1,0 +1,18 @@
+Start testing: Mar 29 13:29 IST
+----------------------------------------------------------
+1/1 Testing: MatrixMultiplyTest
+1/1 Test: MatrixMultiplyTest
+Command: "/media/priyam/New Volume/new_compiler/pPIM-Compiler/build/tools/ppim-compiler" "/media/priyam/New Volume/new_compiler/pPIM-Compiler/build/test/matrix_multiply.bc" "-o" "/media/priyam/New Volume/new_compiler/pPIM-Compiler/build/test/matrix_multiply.pim"
+Directory: /media/priyam/New Volume/new_compiler/pPIM-Compiler/build/test
+"MatrixMultiplyTest" start time: Mar 29 13:29 IST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"MatrixMultiplyTest" end time: Mar 29 13:29 IST
+"MatrixMultiplyTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 29 13:29 IST
