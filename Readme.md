@@ -1,6 +1,6 @@
 # pPIM Compiler: A LLVM-based Compiler for Processing-in-Memory Architectures
 
-![pPIM Architecture Overview](https://via.placeholder.com/800x400?text=pPIM+Compiler+Architecture+Diagram)
+
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -67,10 +67,23 @@ make -j$(nproc)
 clang++ -emit-llvm -c test/MatrixMultiply/matrix_multiply.cpp -o matrix_multiply.bc
 ./tools/ppim-compiler matrix_multiply.bc -o program.pim
 
+[2-bit OPCODE][6-bit CORE][6-bit UNUSED][1-bit R][1-bit W][8-bit ROW_ADDR]
+
 cat program.pim
 010000000000000000000000  # Program LUTs
 000000000000001000000000  # Load matrix row
 100000000000000000000000  # Compute operation
 110000000000000000000000  # End program
 
-[2-bit OPCODE][6-bit CORE][6-bit UNUSED][1-bit R][1-bit W][8-bit ROW_ADDR]
+010000000000001000000000
+││     │        │││└─ Row 0
+││     │        │└┴─ R=1 (read), W=0
+│└─────┴────────┴─ Unused
+└─ Opcode 01 (LUT_PROG)
+
+| Opcode | Name       | Description                           |
+|--------|------------|---------------------------------------|
+| `00`   | MEM_ACCESS | Memory load/store operation (R=1/W=1) |
+| `01`   | LUT_PROG   | Program LUTs for computations         |
+| `10`   | COMPUTE    | Execute operations (e.g., 9-step MAC) | 
+| `11`   | END        | Terminate operation                   |
