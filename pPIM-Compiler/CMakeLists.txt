@@ -9,6 +9,7 @@ include_directories(${LLVM_INCLUDE_DIRS})
 include_directories(include)
 add_definitions(${LLVM_DEFINITIONS})
 
+
 # Add subdirectories
 add_subdirectory(lib)
 add_subdirectory(tools)
@@ -16,3 +17,6 @@ add_subdirectory(tools)
 # Enable testing
 enable_testing()
 add_subdirectory(test)
+
+
+

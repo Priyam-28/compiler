@@ -7,48 +7,40 @@
 #include "pPIMInstrInfo.h"
 
 namespace llvm {
-  class Module;
-  class Function;
-  class MachineFunction;
-  class raw_ostream;
+    class Module;
+    class Function;
+    class MachineFunction;
+    class raw_ostream;
 }
 
 namespace pPIM {
 
 class Backend {
 public:
-  Backend();
-  
-  // Initialize the backend
-  bool initialize(llvm::Module &M);
-  
-  // Identify matrix multiplication patterns in the IR
-  bool identifyMatrixMultiplication(llvm::Function &F);
-  
-  // Lower matrix multiplication to pPIM instructions
-  bool lowerMatrixMultiplication(llvm::Function &F);
-  
-  // Generate pPIM instructions for a function
-  std::vector<uint32_t> generateInstructions(llvm::Function &F);
-  
-  // Emit the final binary code
-  bool emitCode(llvm::raw_ostream &OS, const std::vector<uint32_t> &Instructions);
-  
+    Backend();
+    
+    // Initialization
+    bool initialize(llvm::Module &M);
+    
+    // Matrix operation handling
+    bool identifyMatrixMultiplication(llvm::Function &F);
+    bool lowerMatrixMultiplication(llvm::Function &F);
+    std::vector<uint32_t> generateInstructions(llvm::Function &F);
+    std::vector<uint32_t> generateMAC8Bit(const MatrixLayout &A, 
+                                        const MatrixLayout &B, 
+                                        const MatrixLayout &C);
+    
+    // Code emission
+    bool emitCode(llvm::raw_ostream &OS, const std::vector<uint32_t> &Instructions);
+    
 private:
-  // Generate LUT programming instructions
-  std::vector<uint32_t> generateLUTProgramming();
-  
-  // Generate memory load/store instructions
-  std::vector<uint32_t> generateMemoryInstructions(const MemoryMap::MatrixLayout &layout);
-  
-  // Generate compute instructions
-  std::vector<uint32_t> generateComputeInstructions();
-  
-  // Map LLVM IR operations to pPIM operations
-  uint32_t mapOperation(const std::string &opName);
-  
-  // Memory map for handling DRAM address translations
-  MemoryMap memoryMap;
+    // Instruction generation helpers
+    std::vector<uint32_t> generateLUTProgramming();
+    std::vector<uint32_t> generateMemoryInstructions(const MatrixLayout &layout);
+    std::vector<uint32_t> generateComputeInstructions();
+    uint32_t mapOperation(const std::string &opName);
+    
+    MemoryMap memoryMap;
 };
 
 } // namespace pPIM
